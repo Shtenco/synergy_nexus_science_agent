@@ -1,0 +1,32 @@
+{
+  "schema": "nexus-science.service-build-recipe/v1",
+  "recipe_id": "NEXUS_SCIENCE_LOCAL_SERVICE_BUILD_RECIPE_V1",
+  "source_repository": "Shtenco/nexus_science_agent",
+  "source_commit": "0607690c3036d2fdce2ac3e044094a8e4da0311b",
+  "service_descriptor_path": "config/science_service_descriptor_v1.json",
+  "include_files": [
+    {"path": "config/science_service_descriptor_v1.json", "git_blob_sha": "9b34dc74aa6f8bd4bfcba6189b5e8c782c1fcc4c"},
+    {"path": "pyproject.toml", "git_blob_sha": "89de22993dd1913510f1ff6ee30ecf02b024093f"},
+    {"path": "schemas/nexus_science_service_v1.schema.json", "git_blob_sha": "d66c306ccc1b0506b6e624749993f1c0a4d6953e"},
+    {"path": "src/nexus_science_agent/__init__.py", "git_blob_sha": "98a6b085895a53d064c66ffaeb7d2196f32019f2"},
+    {"path": "src/nexus_science_agent/core.py", "git_blob_sha": "0aeaa1a99a7ff13da243fc89621b97de0fb2c639"},
+    {"path": "src/nexus_science_agent/service_v4.py", "git_blob_sha": "33bbc8b9973f1834030be5e3600e0fe528d4de2c"}
+  ],
+  "excluded_network_modules": ["src/nexus_science_agent/retrieval.py"],
+  "archive_profile": {
+    "format": "ZIP_STORED",
+    "entry_order": "LEXICOGRAPHIC_PATH",
+    "fixed_timestamp": "1980-01-01T00:00:00Z",
+    "file_mode": "0644",
+    "strip_extra_fields": true
+  },
+  "dependency_contract": "PYTHON_STDLIB_ONLY",
+  "dependency_lock_status": "STDLIB_ONLY_NO_THIRD_PARTY_RUNTIME_DEPENDENCIES",
+  "artifact_semantics": "LOCAL_RESEARCH_SERVICE_SOURCE_PACKAGE_CANDIDATE",
+  "service_roles": ["SCIENCE_AGENT"],
+  "network_retrieval_capability": "EXCLUDED_FROM_ARTIFACT_V1",
+  "scientific_truth_authority": "NONE",
+  "build_authority": "SOURCE_REPOSITORY_ONLY",
+  "execution_authority": "NONE",
+  "recipe_digest": "3b1f7a64a943a0a144a52ead894c1e0c2d454e67657992ebcb434a6fdcd18c78"
+}

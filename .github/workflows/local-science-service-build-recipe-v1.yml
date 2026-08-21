@@ -1,0 +1,40 @@
+name: local-science-service-build-recipe-v1
+
+on:
+  pull_request:
+    paths:
+      - 'config/local_science_service_build_recipe_v1.json'
+      - 'src/nexus_science_agent/service_build_recipe_v1.py'
+      - 'tools/build_local_science_service_v1.py'
+      - 'tests/test_local_science_service_build_recipe_v1.py'
+      - 'docs/LOCAL_SCIENCE_SERVICE_BUILD_RECIPE_V1.md'
+      - '.github/workflows/local-science-service-build-recipe-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_science_core.py tests/test_science_service_v4.py tests/test_local_science_service_build_recipe_v1.py
+      - run: mkdir -p dist/a dist/b
+      - run: python tools/build_local_science_service_v1.py --output dist/a/nexus-science-local-v1.zip --evidence dist/a/build-evidence.json
+      - run: python tools/build_local_science_service_v1.py --output dist/b/nexus-science-local-v1.zip --evidence dist/b/build-evidence.json
+      - run: cmp dist/a/nexus-science-local-v1.zip dist/b/nexus-science-local-v1.zip
+      - run: cmp dist/a/build-evidence.json dist/b/build-evidence.json
+      - run: sha256sum dist/a/nexus-science-local-v1.zip dist/a/build-evidence.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nexus-science-local-build-candidate-v1
+          path: |
+            dist/a/nexus-science-local-v1.zip
+            dist/a/build-evidence.json
+          if-no-files-found: error
