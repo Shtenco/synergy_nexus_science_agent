@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"nexus.science-service/v1",
+  "$defs":{
+    "sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "searchRequest":{"type":"object","additionalProperties":false,"required":["schema","request_id","operation","corpus_digest","query","limit"],"properties":{"schema":{"const":"nexus.science-service-request/v1"},"request_id":{"type":"string","minLength":1,"maxLength":128},"operation":{"const":"SEARCH_LOCAL"},"corpus_digest":{"$ref":"#/$defs/sha256"},"query":{"type":"string","minLength":1,"maxLength":4096},"limit":{"type":"integer","minimum":1,"maximum":20}}},
+    "claimRequest":{"type":"object","additionalProperties":false,"required":["schema","request_id","operation","corpus_digest","evidence_graph_digest","claim_id"],"properties":{"schema":{"const":"nexus.science-service-request/v1"},"request_id":{"type":"string","minLength":1,"maxLength":128},"operation":{"const":"CLAIM_SUMMARY"},"corpus_digest":{"$ref":"#/$defs/sha256"},"evidence_graph_digest":{"$ref":"#/$defs/sha256"},"claim_id":{"type":"string","minLength":1,"maxLength":256}}},
+    "response":{"type":"object","required":["schema","request_id","operation","status","request_digest","corpus_digest","result","scientific_truth_authority","execution_authority","response_digest"],"properties":{"schema":{"const":"nexus.science-service-response/v1"},"request_id":{"type":"string"},"operation":{"enum":["SEARCH_LOCAL","CLAIM_SUMMARY"]},"status":{"const":"OK"},"request_digest":{"$ref":"#/$defs/sha256"},"corpus_digest":{"$ref":"#/$defs/sha256"},"evidence_graph_digest":{"$ref":"#/$defs/sha256"},"result":{"type":"object"},"scientific_truth_authority":{"const":"NONE"},"execution_authority":{"const":"NONE"},"response_digest":{"$ref":"#/$defs/sha256"}}}
+  },
+  "oneOf":[{"$ref":"#/$defs/searchRequest"},{"$ref":"#/$defs/claimRequest"},{"$ref":"#/$defs/response"}]
+}

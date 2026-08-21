@@ -1,0 +1,13 @@
+{
+  "schema":"nexus.science-service-descriptor/v1",
+  "service_kind":"SCIENCE_AGENT",
+  "required_capability":"SCIENCE_RESEARCH",
+  "repository":"Shtenco/nexus_science_agent",
+  "source_generation":"feat/science-service-protocol-v4-20260821",
+  "entrypoint":"nexus_science_agent.service_v4:ScienceServiceV4",
+  "network_retrieval_from_remote_requests":"FORBIDDEN",
+  "build_artifact_digest":null,
+  "build_status":"SOURCE_SERVICE_CANDIDATE_NOT_BUILD_VERIFIED",
+  "scientific_truth_authority":"NONE",
+  "execution_authority":"NONE"
+}
