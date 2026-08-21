@@ -1,0 +1,27 @@
+{
+  "schema": "nexus.demo-corpus/v1",
+  "status": "DEMO_METHOD_VALIDATION_NOT_SCIENTIFIC_RESULT",
+  "documents": [
+    {
+      "document_id": "dedup-principle",
+      "uri": "demo://dedup-principle",
+      "source_kind": "DEMO_FIXTURE",
+      "retrieved_at": "2026-08-21T06:00:00Z",
+      "content": "When sender and receiver identify identical content by the same cryptographic content hash, a warm receiver cache can avoid retransmitting the already present content bytes."
+    },
+    {
+      "document_id": "compression-principle",
+      "uri": "demo://compression-principle",
+      "source_kind": "DEMO_FIXTURE",
+      "retrieved_at": "2026-08-21T06:00:00Z",
+      "content": "Lossless compression reduces payload bytes only when the encoded representation plus required framing is smaller than the original representation."
+    },
+    {
+      "document_id": "latency-caveat",
+      "uri": "demo://latency-caveat",
+      "source_kind": "DEMO_FIXTURE",
+      "retrieved_at": "2026-08-21T06:00:00Z",
+      "content": "Content deduplication alone does not prove lower end-to-end latency for every workload because hashing, cache lookup, compression CPU cost, congestion and round-trip time also affect latency."
+    }
+  ]
+}
