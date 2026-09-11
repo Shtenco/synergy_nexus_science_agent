@@ -24,4 +24,4 @@ jobs:
       - name: Compile
         run: python -m compileall -q nexus_research tests
       - name: Research Cortex contracts
-        run: python -m unittest -v tests.test_research_cortex
+        run: python -m unittest discover -v -s tests -p 'test_*.py'
