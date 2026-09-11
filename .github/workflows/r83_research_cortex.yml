@@ -1,0 +1,27 @@
+name: NEXUS R8.3 Research Cortex
+
+on:
+  push:
+    branches: [r83-research-cortex]
+  pull_request:
+    paths:
+      - 'nexus_research/**'
+      - 'tests/**'
+      - '.github/workflows/r83_research_cortex.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m compileall -q nexus_research tests
+      - name: Research Cortex contracts
+        run: python -m unittest -v tests.test_research_cortex
