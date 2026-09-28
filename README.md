@@ -362,3 +362,34 @@ flowchart LR
 Любое сильное утверждение должно указывать на воспроизводимый тест, benchmark, ledger/evidence artifact или формально проверяемый контракт.
 
 <!-- SYNERGY-FEDERATION-PASSPORT:END -->
+
+---
+
+# 🔬 Глубокий статус-паспорт Science Agent
+
+## Реальность `main`
+
+На текущем `main` присутствуют только `README.md` и legacy owner-manifest. Полноценные fetcher/index/cache/evidence-graph runtime модули, описанные в target architecture, **ещё не материализованы здесь**.
+
+```mermaid
+flowchart LR
+    SPEC[📘 Scientific architecture] --> NEXT[🔄 Implementation needed]
+    NEXT --> FETCH[Fetcher/index]
+    FETCH --> EVID[Evidence graph]
+    EVID --> FALS[Falsification]
+    FALS --> REPRO[Repro package]
+```
+
+## Текущий корректный статус
+
+🧱 **ARCHITECTURE / BOOTSTRAP**, а не готовый автономный science agent.
+
+## Promotion gate
+
+1. source fetch/cache implementation;
+2. content-addressed document store;
+3. claim/evidence schema;
+4. contradiction/falsification tests;
+5. citation provenance;
+6. reproducible code execution sandbox;
+7. one end-to-end research package reproduced independently.
