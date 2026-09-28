@@ -153,3 +153,45 @@ def consume_model_consistency(payload: dict[str, Any]) -> dict[str, Any]:
         "causal_claim_authority": False,
         "requires_independent_sources": True,
     }
+
+
+def consume_quantum_reference_control(payload: dict[str, Any]) -> dict[str, Any]:
+    if payload.get("passed") is not True:
+        raise ValueError("quantum reference control must pass")
+    if str(payload.get("science_status","")) != "STANDARD_QM_REFERENCE_CONTROL":
+        raise ValueError("unexpected science status")
+    if bool(payload.get("experimental_result")) or bool(payload.get("novel_physics_claim")):
+        raise ValueError("reference control cannot self-promote to experiment or novel physics")
+    return {
+        "kind":"QUANTUM_REFERENCE_CONTROL",
+        "benchmark_id":str(payload["benchmark_id"]),
+        "chsh_absolute_value":float(payload["chsh_absolute_value"]),
+        "tsirelson_bound":float(payload["tsirelson_bound"]),
+        "passed":True,
+        "experimental_result":False,
+        "novel_physics_claim":False,
+        "requires_independent_reproduction":True,
+    }
+
+
+def consume_provenance_graph(payload: dict[str, Any]) -> dict[str, Any]:
+    if payload.get("relationship_semantics_preserved") is not True:
+        raise ValueError("relationship semantics must be preserved")
+    if bool(payload.get("wrongdoing_inference_authority")):
+        raise ValueError("provenance graph cannot infer wrongdoing")
+    if bool(payload.get("identity_claim_authority")):
+        raise ValueError("graph cannot self-authorize identity claims")
+    for field in ("nodes_sha256","edges_sha256","evidence_sha256"):
+        digest=str(payload.get(field,"")).lower()
+        if len(digest)!=64 or any(c not in "0123456789abcdef" for c in digest):
+            raise ValueError(f"invalid {field}")
+    return {
+        "kind":"PROVENANCE_GRAPH",
+        "snapshot_id":str(payload["snapshot_id"]),
+        "nodes":int(payload["nodes"]),
+        "edges":int(payload["edges"]),
+        "records_scanned":int(payload["records_scanned"]),
+        "wrongdoing_inference_authority":False,
+        "identity_claim_authority":False,
+        "requires_source_level_review":True,
+    }
