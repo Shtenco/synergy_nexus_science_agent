@@ -117,3 +117,39 @@ def evidence_package_payload(
         "status": package_status,
         "reproduction_command": reproduction_command,
     }
+
+
+def consume_constraint_benchmark(payload: dict[str, Any]) -> dict[str, Any]:
+    if str(payload.get("epistemic_status", "")).upper() != "MEASURED":
+        raise ValueError("constraint benchmark must be MEASURED")
+    if bool(payload.get("cryptographic_break_claim")):
+        raise ValueError("benchmark cannot self-declare a cryptographic break")
+    gain = float(payload.get("information_gain_bits", -1))
+    if gain < 0:
+        raise ValueError("invalid information gain")
+    return {
+        "kind": "CONSTRAINT_BENCHMARK",
+        "benchmark_id": str(payload["benchmark_id"]),
+        "problem_family": str(payload["problem_family"]),
+        "information_gain_bits": gain,
+        "epistemic_status": "MEASURED",
+        "break_claim": False,
+        "requires_independent_reproduction": True,
+    }
+
+
+def consume_model_consistency(payload: dict[str, Any]) -> dict[str, Any]:
+    status = str(payload.get("epistemic_status", "")).upper()
+    if status not in {"EVALUATED","DERIVED","HYPOTHESIS","STRESS_TEST","LEGACY"}:
+        raise ValueError("invalid model epistemic status")
+    if bool(payload.get("observed_physical_effect")) or bool(payload.get("causal_claim_authority")):
+        raise ValueError("computational model cannot self-promote to observed causal evidence")
+    return {
+        "kind": "MODEL_CONSISTENCY",
+        "experiment_id": str(payload["experiment_id"]),
+        "table_graph_gate_pass": bool(payload.get("table_graph_gate_pass")),
+        "epistemic_status": status,
+        "observed_physical_effect": False,
+        "causal_claim_authority": False,
+        "requires_independent_sources": True,
+    }
