@@ -332,17 +332,17 @@ The first production-quality milestone should not be “write a beautiful litera
 <!-- SYNERGY-FEDERATION-PASSPORT:START -->
 ---
 
-## 🧭 SYNERGY federation passport
+##  SYNERGY federation passport
 
-**Домен:** 🔬 Scientific agent  
+**Домен:**  Scientific agent  
 **Архитектурный родитель:** [`synergy_agi_nexus`](https://github.com/Shtenco/synergy_agi_nexus)  
 **Архитектурный корень:** [`synergy_system`](https://github.com/Shtenco/synergy_system)
 
 ```mermaid
 flowchart LR
-    SYS[🧭 synergy_system] --> P[synergy_agi_nexus]
+    SYS[ synergy_system] --> P[synergy_agi_nexus]
     P --> THIS[synergy_nexus_science_agent]
-    THIS --> E[📦 Evidence / outputs]
+    THIS --> E[ Evidence / outputs]
 ```
 
 Архитектурная принадлежность не заменяет доказанную интеграцию. Runtime-связь должна подтверждаться контрактами, manifests, deployment-конфигурацией или тестами.
@@ -353,9 +353,9 @@ flowchart LR
 
 ### Навигация
 
-- [📚 Атлас 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
-- [🧾 Registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
-- [🧭 Architecture root](https://github.com/Shtenco/synergy_system)
+- [ Атлас 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
+- [ Registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
+- [ Architecture root](https://github.com/Shtenco/synergy_system)
 
 ### Evidence rule
 
@@ -365,7 +365,7 @@ flowchart LR
 
 ---
 
-# 🔬 Глубокий статус-паспорт Science Agent
+#  Глубокий статус-паспорт Science Agent
 
 ## Реальность `main`
 
@@ -373,7 +373,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    SPEC[📘 Scientific architecture] --> NEXT[🔄 Implementation needed]
+    SPEC[ Scientific architecture] --> NEXT[ Implementation needed]
     NEXT --> FETCH[Fetcher/index]
     FETCH --> EVID[Evidence graph]
     EVID --> FALS[Falsification]
@@ -382,7 +382,7 @@ flowchart LR
 
 ## Текущий корректный статус
 
-🧱 **ARCHITECTURE / BOOTSTRAP**, а не готовый автономный science agent.
+ **ARCHITECTURE / BOOTSTRAP**, а не готовый автономный science agent.
 
 ## Promotion gate
 
