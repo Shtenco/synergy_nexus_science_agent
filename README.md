@@ -1,3 +1,12 @@
+<!-- RESEARCH-V2-2026:START -->
+<div align="center">
+<img src="assets/readme/scientific-process-v2.svg" width="100%" alt="NEXUS / SCIENTIFIC EVIDENCE ENGINE"/>
+
+**[Глубокое научно-техническое досье — алгоритмы, формулы и проверяемые исследования](docs/SCIENTIFIC_DOSSIER_V2_2026.md)**
+</div>
+
+<!-- RESEARCH-V2-2026:END -->
+
 # NEXUS SCIENCE AGENT
 
 **Scientific search, evidence, falsification and reproducible-research agent built on validated NEXUS cores.**
